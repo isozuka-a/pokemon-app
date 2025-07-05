@@ -10,11 +10,22 @@ function App() {
     const fetchPokemonData = async () =>{
       //全てのポケモンデータを取得
       let res = await getAllPokemon(initialURL);
-      console.log(res);
+      //各ポケモンの詳細なデータを取得
+      loadPokemon(res.results);
+      console.log(res.results);
       setLoading(false);
     };
     fetchPokemonData();
   }, []);
+
+  const loadPokemon = (data) => {
+    let _pokemonData = Promise.all(
+      data.map((pokemon) => {
+        let pokemonRecord = getPokemon(pokemon.url);
+        return pokemonRecord;
+      })
+    )
+  };
   return <div className="App">
     {loading ? (
       <h1>ロード中・・・</h1>
