@@ -1,6 +1,6 @@
 import{ useEffect, useState } from "react";
 import './App.css';
-import { getAllPokemon} from "./utils/pokemon.js"
+import { getAllPokemon,getPokemon} from "./utils/pokemon.js"
 
 function App() {
   const initialURL = "https://pokeapi.co/api/v2/pokemon";
